@@ -10,6 +10,8 @@ public class AppUtils {
     public AppUtils(Context context){
         this.context = context;
     }
+
+    // check if network is available
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

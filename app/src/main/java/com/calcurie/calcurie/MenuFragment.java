@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class MenuFragment extends Fragment {
 
     ArrayList<String> menu = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -27,7 +28,10 @@ public class MenuFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         menu.clear();
+
+        // add new menu here
         menu.add("Login");
         menu.add("Sign out");
 
@@ -49,6 +53,16 @@ public class MenuFragment extends Fragment {
                             .replace(R.id.activity_main, new LoginFragment())
                             .addToBackStack(null).commit();
                 }
+
+                // add link to other fragments here
+
+                /* else if (menu.get(position).equals("Register")) {
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.activity_main, new RegisterFragment())
+                            .addToBackStack(null).commit();
+                } */
             }
         });
     }
@@ -56,6 +70,6 @@ public class MenuFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
 }

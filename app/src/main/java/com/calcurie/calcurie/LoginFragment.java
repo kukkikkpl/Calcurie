@@ -38,12 +38,6 @@ public class LoginFragment extends Fragment {
         registerBtn();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-    }
-
     void loginBtn() {
         Button loginBtn = (Button) getView().findViewById(R.id.login_login_btn);
         loginBtn.setOnClickListener(new View.OnClickListener() {

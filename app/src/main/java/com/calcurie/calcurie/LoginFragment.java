@@ -66,11 +66,11 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("USER", "GO TO REGISTER");
-                /** getActivity()
+                /* getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.activity_main, new RegisterFragment())
-                        .addToBackStack(null).commit(); **/
+                        .addToBackStack(null).commit(); */
             }
         });
     }
@@ -82,11 +82,11 @@ public class LoginFragment extends Fragment {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user.isEmailVerified()) {
                     Log.d("USER", "GO TO MENU");
-                    /** getActivity()
+                    /* getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.activity_main, new MenuFragment())
-                            .addToBackStack(null).commit(); **/
+                            .addToBackStack(null).commit(); */
                 } else {
                     Toast.makeText(
                             getActivity(),

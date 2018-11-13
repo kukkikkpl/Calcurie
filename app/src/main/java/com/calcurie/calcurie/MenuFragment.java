@@ -33,6 +33,7 @@ public class MenuFragment extends Fragment {
 
         // add new menu here
         menu.add("Login");
+        menu.add("Register");
         menu.add("Sign out");
 
         ListView menuList = getView().findViewById(R.id.menu_list);
@@ -51,6 +52,12 @@ public class MenuFragment extends Fragment {
                             .getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.activity_main, new LoginFragment())
+                            .addToBackStack(null).commit();
+                } else if (menu.get(position).equals("Register")) {
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.activity_main, new RegisterFragment())
                             .addToBackStack(null).commit();
                 }
 

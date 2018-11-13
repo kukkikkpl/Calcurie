@@ -7,11 +7,12 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
-            android:padding="35dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="35dp">
 
             <SearchView
                 android:layout_width="match_parent"
@@ -20,7 +21,13 @@
             <ListView
                 android:id="@+id/weight_listview"
                 android:layout_width="match_parent"
-                android:layout_height="408dp"></ListView>
+                android:layout_height="324dp"></ListView>
+
+            <Button
+                android:id="@+id/show menu_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="show menu" />
 
             <Button
                 android:id="@+id/weight_back_btn"

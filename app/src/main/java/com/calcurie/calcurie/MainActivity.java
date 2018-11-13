@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null){
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.activity_main, new LoginFragment()).commit();
+                    .replace(R.id.activity_main, new MenuFragment()).commit();
         }
 
     }

@@ -19,18 +19,20 @@
                 android:layout_height="match_parent" />
 
             <ListView
-                android:id="@+id/weight_listview"
+                android:id="@+id/diary_menu"
                 android:layout_width="match_parent"
-                android:layout_height="324dp"></ListView>
+                android:layout_height="324dp">
+
+            </ListView>
 
             <Button
-                android:id="@+id/show menu_btn"
+                android:id="@+id/diary_show_btn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="show menu" />
 
             <Button
-                android:id="@+id/weight_back_btn"
+                android:id="@+id/diary_back_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="back" />

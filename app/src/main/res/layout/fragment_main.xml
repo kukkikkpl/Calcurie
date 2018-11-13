@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:text="Calcurie"
+        android:textAllCaps="true"
+        android:textSize="30sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="35dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
+
+                <TextView
+                    android:layout_width="124dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="แคลลอรี่ที่แนะนำต่อวัน" />
+
+                <TextView
+                    android:id="@+id/main_recommend_cal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="แคลลอรี่ที่ทานไปแล้ว" />
+
+                <TextView
+                    android:id="@+id/main_already_cal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
+
+                <TextView
+                    android:layout_width="124dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="แคลลอรี่ที่สามารถทานได้" />
+
+                <TextView
+                    android:id="@+id/main_remain_cal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/main_diary_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Diary Menu" />
+
+            <Button
+                android:id="@+id/main_profile_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Profile" />
+
+            <Button
+                android:id="@+id/main_logout_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

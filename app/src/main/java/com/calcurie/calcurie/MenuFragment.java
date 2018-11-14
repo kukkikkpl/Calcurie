@@ -33,6 +33,8 @@ public class MenuFragment extends Fragment {
 
         // add new menu here
         menu.add("Login");
+        menu.add("Food Selection (Test)");
+        menu.add("Food Selected");
         menu.add("Sign out");
 
         ListView menuList = getView().findViewById(R.id.menu_list);
@@ -50,7 +52,20 @@ public class MenuFragment extends Fragment {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.activity_main, new LoginFragment())
+                            .replace(R.id.main_view, new LoginFragment())
+                            .addToBackStack(null).commit();
+                }
+                else if (menu.get(position).equals("Food Selection (Test)")) {
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new SelectFoodFragment())
+                            .addToBackStack(null).commit();
+                } else if (menu.get(position).equals("Food Selected")) {
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new SelectedFoodFrgment())
                             .addToBackStack(null).commit();
                 }
 

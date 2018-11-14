@@ -14,5 +14,10 @@
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         />
+    <FrameLayout
+        android:id="@+id/main_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.calcurie.calcurie;
+package com.calcurie.calcurie.util;
 
 import android.app.Application;
 import android.content.Context;

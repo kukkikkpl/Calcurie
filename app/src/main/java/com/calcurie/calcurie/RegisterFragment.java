@@ -17,15 +17,21 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.calcurie.calcurie.model.User;
+import com.calcurie.calcurie.util.DBHelper;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterFragment extends Fragment {
 
+    private DBHelper dbHelper;
+    private FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
+    private User user = new User();
     private String[] activityList = {"Low", "Medium", "High"};
 
     @Nullable
@@ -38,6 +44,7 @@ public class RegisterFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
         initRegisterNewAccountBtn();
         initSpinner();
     }
@@ -54,6 +61,7 @@ public class RegisterFragment extends Fragment {
                 Toast.makeText(getActivity(),
                         "Select : " + activityList[position],
                         Toast.LENGTH_SHORT).show();
+                user.setActivityLevel(position+1);
             }
 
             @Override
@@ -120,6 +128,11 @@ public class RegisterFragment extends Fragment {
             ).show();
             Log.d("REGISTER", "PASSWORD AND RE-PASSWORD ARE NOT EQUAL");
         } else {
+            user.setName(nameStr);
+            user.setHeight(Float.parseFloat(heightStr));
+            user.setWeight(Float.parseFloat(weightStr));
+            user.setAge(Integer.parseInt(ageStr));
+            user.setGender(genderStr);
             firebaseAuth.createUserWithEmailAndPassword(emailStr, passwordStr).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
@@ -139,16 +152,31 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d("REGISTER", "GO TO LOG IN");
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.activity_main, new LoginFragment())
-                        .addToBackStack(null).commit();
+                String id = firebaseAuth.getCurrentUser().getUid();
+                user.setId(id);
+                dbHelper = new DBHelper(getContext());
+                dbHelper.addUser(user);
+                addUser();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getActivity(), "อีเมลไม่ถูกต้อง", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void addUser() {
+        firestore.collection("Users")
+                .document(user.getId())
+                .set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.activity_main, new LoginFragment())
+                        .addToBackStack(null).commit();
             }
         });
     }

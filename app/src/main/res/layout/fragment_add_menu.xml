@@ -13,7 +13,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/add_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -24,21 +24,38 @@
             android:layout_width="272dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="food name" />
+            android:hint="Food name" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
 
         <ImageView
             android:id="@+id/food_img"
-            android:layout_width="293dp"
-            android:layout_height="151dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:scaleType="centerCrop" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="3dp"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:id="@+id/take_picture_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@android:drawable/ic_menu_camera"
+            android:background="@android:color/transparent"/>
     </LinearLayout>
 
     <LinearLayout
@@ -47,6 +64,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -63,6 +81,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

@@ -3,6 +3,7 @@ package com.calcurie.calcurie;
 import java.io.Serializable;
 
 public class Food implements Serializable {
+    private String id;
     private String name;
     private String detail;
     private int calories;
@@ -11,12 +12,21 @@ public class Food implements Serializable {
 
     public Food() {}
 
-    public Food(String name, String detail, int calories, String img_url) {
+    public Food(String id, String name, String detail, int calories, String img_url) {
+        this.id = id;
         this.name = name;
         this.detail = detail;
         this.calories = calories;
         this.img_url = img_url;
         this.qty = 0;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

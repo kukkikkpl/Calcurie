@@ -82,11 +82,11 @@ public class LoginFragment extends Fragment {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user.isEmailVerified()) {
                     Log.d("USER", "GO TO MENU");
-                    /* getActivity()
+                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.activity_main, new MenuFragment())
-                            .addToBackStack(null).commit(); */
+                            .replace(R.id.main_view, new MenuFragment())
+                            .addToBackStack(null).commit();
                 } else {
                     Toast.makeText(
                             getActivity(),

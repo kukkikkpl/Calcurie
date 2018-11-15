@@ -17,16 +17,23 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.type.Date;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+import java.util.Map;
 
 public class SelectFoodFragment extends Fragment {
     private List<Food> foods;
@@ -71,7 +78,53 @@ public class SelectFoodFragment extends Fragment {
         builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 Log.d("SelectFood", "User Accept");
-                Toast.makeText(getContext(), "บันทึกสำเร็จ", Toast.LENGTH_SHORT).show();
+                Map<String, Food> docMeal = new HashMap<>();
+                int qtyCheck = 0;
+                for (Food item: foods) {
+                    if (item.getQty() > 0) {
+                        qtyCheck += item.getQty();
+                        docMeal.put(item.getId(), item);
+                    }
+                }
+                if (qtyCheck < 1) {
+                    Toast.makeText(getContext(), "กรุณาพิ่มจำนวนอาหาร", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                java.util.Date currentTime = Calendar.getInstance().getTime();
+                SimpleDateFormat sdf_1 = new SimpleDateFormat("yyyy-dd-MM");
+                SimpleDateFormat sdf_2 = new SimpleDateFormat("hh:mm:ss");
+
+                String dateNow = sdf_1.format(currentTime);
+                String timeNow = sdf_2.format(currentTime);
+
+                Log.d("SelectFood", "dateNow = " + dateNow + " timeNow = " + timeNow);
+
+                fsDB.collection("Users")
+                        .document(fsAuth.getUid())
+                        .collection(dateNow)
+                        .document(timeNow)
+                        .set(docMeal)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d("SelectFood", "DocumentSnapshot successfully written!");
+                                Toast.makeText(getContext(), "บันทึกสำเร็จ", Toast.LENGTH_LONG).show();
+                                getActivity().getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .replace(R.id.main_view, new MenuFragment())
+                                        .addToBackStack(null)
+                                        .commit();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d("SelectFood", "Error writing document", e);
+                                Toast.makeText(getContext(), "บันทึกล้มเหลว", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
             }
         });
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -98,12 +151,13 @@ public class SelectFoodFragment extends Fragment {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d("SelectFood", document.getId() + " => " + document.getData());
+                        String id = document.getId();
                         String foodName = document.get("name").toString();
                         String detail = document.get("detail").toString();
                         String calories = document.get("calories").toString();
                         int caloriesInt = Integer.parseInt(calories);
                         String img_url = document.get("image_url").toString();
-                        Food food = new Food(foodName, detail, caloriesInt, img_url);
+                        Food food = new Food(id, foodName, detail, caloriesInt, img_url);
                         foods.add(food);
                         foodAdapter.notifyDataSetChanged();
                     }

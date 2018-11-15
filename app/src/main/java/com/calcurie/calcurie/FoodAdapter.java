@@ -22,7 +22,6 @@ import java.util.List;
 
 public class FoodAdapter extends ArrayAdapter<Food> {
     private List<Food> foods;
-    private ArrayList<Food> foodHolder;
     private Context context;
     private View foodItem;
     private Bundle bundle;
@@ -33,7 +32,6 @@ public class FoodAdapter extends ArrayAdapter<Food> {
         super(context, resource, objects);
         this.foods = objects;
         this.context = context;
-        this.foodHolder = new ArrayList<>();
         this.bundle = new Bundle();
     }
 

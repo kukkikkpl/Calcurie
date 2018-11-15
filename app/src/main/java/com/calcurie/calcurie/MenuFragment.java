@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 public class MenuFragment extends Fragment {
@@ -32,10 +34,9 @@ public class MenuFragment extends Fragment {
         menu.clear();
 
         // add new menu here
-        menu.add("Login");
         menu.add("Food Selection (Test)");
         menu.add("Food Selected");
-        menu.add("Sign out");
+        menu.add("Sign Out");
 
         ListView menuList = getView().findViewById(R.id.menu_list);
         final ArrayAdapter<String> menuAdapter = new ArrayAdapter<String>(
@@ -48,14 +49,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("MENU", "Select " + menu.get(position));
-                if (menu.get(position).equals("Login")) {
-                    getActivity()
-                            .getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.main_view, new LoginFragment())
-                            .addToBackStack(null).commit();
-                }
-                else if (menu.get(position).equals("Food Selection (Test)")) {
+                if (menu.get(position).equals("Food Selection (Test)")) {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
@@ -67,6 +61,14 @@ public class MenuFragment extends Fragment {
                             .beginTransaction()
                             .replace(R.id.main_view, new SelectedFoodFrgment())
                             .addToBackStack(null).commit();
+                } else if(menu.get(position).equals("Sign Out")){
+                    FirebaseAuth userAuth = FirebaseAuth.getInstance();
+                    userAuth.signOut();
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new LoginFragment())
+                            .addToBackStack(null)
+                            .commit();
                 }
 
                 // add link to other fragments here

@@ -65,13 +65,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="15">
 
                 <Button
                     android:id="@+id/fragment_food_item_decrease"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:text="&lt;"
                     android:focusable="true" />
 
@@ -79,7 +79,7 @@
                     android:id="@+id/fragment_food_item_qty"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:text="0"
@@ -89,17 +89,17 @@
                     android:id="@+id/fragment_food_item_increase"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:text="&gt;"
                     android:focusable="true"/>
 
                 <Button
-                    android:id="@+id/fragment_food_item_add"
+                    android:id="@+id/fragment_food_item_reset_btn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Add"
-                    android:focusable="false"/>
+                    android:layout_weight="3"
+                    android:focusable="false"
+                    android:text="Reset" />
 
             </LinearLayout>
 

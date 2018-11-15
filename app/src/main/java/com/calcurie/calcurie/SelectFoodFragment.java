@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -25,13 +26,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SelectFoodFragment extends Fragment {
     private List<Food> foods;
     private Bundle bundle;
     private FirebaseFirestore fsDB;
     private FirebaseAuth fsAuth;
-    private View foodItem;
 
     public SelectFoodFragment() {
         this.fsDB = FirebaseFirestore.getInstance();
@@ -69,13 +70,14 @@ public class SelectFoodFragment extends Fragment {
         builder.setMessage("ยืนยันรายการที่จะบันทึกหรือไม่?");
         builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Toast.makeText(getContext(),
-                        "คุณตกลง", Toast.LENGTH_SHORT).show();
+                Log.d("SelectFood", "User Accept");
+                Toast.makeText(getContext(), "บันทึกสำเร็จ", Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Log.d("SelectFood", "User Decline");
                 dialog.dismiss();
             }
         });

@@ -62,16 +62,29 @@ public class FoodAdapter extends ArrayAdapter<Food> {
         nameText.setText(food.getName());
         detailText.setText(food.getDetail());
         caloriesText.setText(Integer.toString(food.getCalories()) + " kcal");
+        qtyText.setText(Integer.toString(food.getQty()));
 
-//        initDecreaseBtn();
-        initIncreaseBtn();
-//        initAddFoodBtn(position);
-//        initSelectedFoodBtn(parent);
+        initDecreaseBtn(food);
+        initIncreaseBtn(food);
+        initResetQtyBtn(food);
 
         return foodItem;
     }
 
-    private void initDecreaseBtn() {
+    private void initResetQtyBtn(final Food food) {
+        Button resetBtn = foodItem.findViewById(R.id.fragment_food_item_reset_btn);
+        final EditText qtyText = (EditText) foodItem.findViewById(R.id.fragment_food_item_qty);
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("SelectFood", "Reset Button was clicked");
+                qtyText.setText("0");
+                food.setQty(0);
+            }
+        });
+    }
+
+    private void initDecreaseBtn(final Food food) {
         Button dcBtn = foodItem.findViewById(R.id.fragment_food_item_decrease);
         final EditText qtyText = (EditText) foodItem.findViewById(R.id.fragment_food_item_qty);
         dcBtn.setOnClickListener(new View.OnClickListener() {
@@ -82,61 +95,28 @@ public class FoodAdapter extends ArrayAdapter<Food> {
                 if (qtyInt != 0) {
                     qtyInt--;
                     qtyText.setText(Integer.toString(qtyInt));
+                    food.setQty(qtyInt);
                 }
             }
         });
     }
 
-    private void initIncreaseBtn() {
+    private void initIncreaseBtn(final Food food) {
         Button icBtn = foodItem.findViewById(R.id.fragment_food_item_increase);
         final EditText qtyText = (EditText) foodItem.findViewById(R.id.fragment_food_item_qty);
         icBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("SelectFood", "Increase Button was clicked");
                 int qtyInt = Integer.parseInt(qtyText.getText().toString());
                 qtyInt++;
                 qtyText.setText(Integer.toString(qtyInt));
+                food.setQty(qtyInt);
             }
         });
     }
 
-    private void initAddFoodBtn(final int position) {
-        Button addFoodBtn = foodItem.findViewById(R.id.fragment_food_item_add);
-        addFoodBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText qtyText = v.findViewById(R.id.fragment_food_item_qty);
-                int qtyInt = Integer.parseInt(qtyText.toString());
-                if (qtyInt < 1) {
-                    Toast.makeText(context, "Qty must be more than 0", Toast.LENGTH_SHORT).show();;
-                } else {
-                    Food food = foods.get(position);
-                    food.setQty(qtyInt);
-                    foodHolder.add(food);
-                    String foodName = food.getName();
-                    Toast.makeText(context, qtyText + " " + foodName + " was added", Toast.LENGTH_SHORT).show();
-                }
-                qtyText.setText("0");
-            }
-        });
-    }
-
-    private void initSelectedFoodBtn(ViewGroup parent) {
-//        Button selectedFoodBtn = LayoutInflater.from(context).inflate(R.layout.fragment_select_food, parent)
-//                .findViewById(R.id.fragment_select_food_selected_food_btn);
-//
-//        selectedFoodBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                bundle.putSerializable("selected food list", foodHolder);
-//                Fragment addSlectedFoodFragment = new SelectedFoodFrgment();
-//                addSlectedFoodFragment.setArguments(bundle);
-//                getActivity()
-//                        .getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.activity_main, new SelectedFoodFragment())
-//                        .addToBackStack(null).commit();
-//            }
-//        });
+    public List<Food> getFoods() {
+        return foods;
     }
 }

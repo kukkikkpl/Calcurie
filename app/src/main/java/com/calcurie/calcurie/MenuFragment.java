@@ -34,8 +34,7 @@ public class MenuFragment extends Fragment {
         menu.clear();
 
         // add new menu here
-        menu.add("Food Selection (Test)");
-        menu.add("Food Selected");
+        menu.add("Food Selection");
         menu.add("Sign Out");
 
         ListView menuList = getView().findViewById(R.id.menu_list);
@@ -49,17 +48,11 @@ public class MenuFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("MENU", "Select " + menu.get(position));
-                if (menu.get(position).equals("Food Selection (Test)")) {
+                if (menu.get(position).equals("Food Selection")) {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.main_view, new SelectFoodFragment())
-                            .addToBackStack(null).commit();
-                } else if (menu.get(position).equals("Food Selected")) {
-                    getActivity()
-                            .getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.main_view, new SelectedFoodFrgment())
                             .addToBackStack(null).commit();
                 } else if(menu.get(position).equals("Sign Out")){
                     FirebaseAuth userAuth = FirebaseAuth.getInstance();

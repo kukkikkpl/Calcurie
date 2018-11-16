@@ -113,7 +113,7 @@ public class LoginFragment extends Fragment {
                     /* getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.activity_main, new MenuFragment())
+                            .replace(R.id.main_view, new MenuFragment())
                             .addToBackStack(null).commit(); */
                 } else {
                     Toast.makeText(

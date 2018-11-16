@@ -16,6 +16,8 @@ import android.widget.ListView;
 
 import com.calcurie.calcurie.util.AppUtils;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 public class MenuFragment extends Fragment {
@@ -38,7 +40,10 @@ public class MenuFragment extends Fragment {
         menu.add("Login");
         menu.add("Register");
         menu.add("Profile");
-        menu.add("Sign out");
+        menu.add("Food Selection");
+        menu.add("Add Food");
+        menu.add("Diary");
+        menu.add("Sign Out");
 
         ListView menuList = getView().findViewById(R.id.menu_list);
         final ArrayAdapter<String> menuAdapter = new ArrayAdapter<String>(
@@ -51,11 +56,11 @@ public class MenuFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("MENU", "Select " + menu.get(position));
-                if (menu.get(position).equals("Login")) {
+                if (menu.get(position).equals("Food Selection")) {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.activity_main, new LoginFragment())
+                            .replace(R.id.main_view, new SelectFoodFragment())
                             .addToBackStack(null).commit();
                 } else if (menu.get(position).equals("Register")) {
                     SharedPreferences setting = getContext().getSharedPreferences(AppUtils.PREFS_NAME, 0);
@@ -75,6 +80,26 @@ public class MenuFragment extends Fragment {
                             .beginTransaction()
                             .replace(R.id.activity_main, new ProfileFragment())
                             .addToBackStack(null).commit();
+                } else if (menu.get(position).equals("Diary")) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new DiaryFragment())
+                            .addToBackStack(null)
+                            .commit();
+                } else if (menu.get(position).equals("Add Food")){
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new AddMenuFragment())
+                            .addToBackStack(null)
+                            .commit();
+                } else if(menu.get(position).equals("Sign Out")){
+                    FirebaseAuth userAuth = FirebaseAuth.getInstance();
+                    userAuth.signOut();
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new LoginFragment())
+                            .addToBackStack(null)
+                            .commit();
                 }
 
                 // add link to other fragments here

@@ -11,23 +11,26 @@
         android:background="#fafafa"
         android:padding="8dp"
         android:gravity="center">
+
         <com.txusballesteros.widgets.FitChart
             android:id="@+id/fitChart"
             android:layout_width="260dp"
             android:layout_height="260dp"
-            app:strokeSize="20dp"
-            app:valueStrokeColor="#59d85e"
+            app:animationMode="overdraw"
             app:backStrokeColor="#c9c9c9"
-            app:animationMode="overdraw"/>
+            app:strokeSize="20dp"
+            app:valueStrokeColor="#59d85e" />
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
             <TextView
                 android:id="@+id/resultCal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="120"
-                android:textSize="30dp"/>
+                android:text="0"
+                android:textSize="50dp"/>
             <TextView
                 android:text="/"
                 android:textSize="30dp"
@@ -40,14 +43,21 @@
                 android:text="1600"
                 android:textSize="30dp"/>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/add"
-            android:layout_margin="40dp"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Add"/>
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/add_home_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:layout_marginTop="8dp"
+                android:background="no"
+                android:src="@drawable/plus" />
+        </LinearLayout>
+
+
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

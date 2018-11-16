@@ -4,8 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorNav">#00cc00</color>
-    <color name="chart_value_1">#2d4302</color>
-    <color name="chart_value_2">#75a80d</color>
-    <color name="chart_value_3">#8fc026</color>
-    <color name="chart_value_4">#B5CC84</color>
+    <color name="fit">#59d85e</color>
+    <color name="over">#de5347</color>
+
 </resources>

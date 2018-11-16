@@ -17,7 +17,7 @@
             android:text="Profile" />
 
         <ImageView
-            android:id="@+id/avata"
+            android:id="@+id/profile_avatar"
             android:layout_width="293dp"
             android:layout_height="151dp"
             android:layout_gravity="center"
@@ -29,14 +29,12 @@
             android:layout_weight="1"
             android:text="Name" />
 
-        <EditText
+        <TextView
             android:id="@+id/profile_name"
             android:layout_width="168dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:hint="name"
-            android:inputType="text" />
+            android:ems="10" />
 
 
         <TextView
@@ -45,14 +43,12 @@
             android:layout_weight="1"
             android:text="Email" />
 
-        <EditText
+        <TextView
             android:id="@+id/profile_email"
             android:layout_width="167dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textEmailAddress" />
+            android:ems="10" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,14 +56,12 @@
             android:layout_weight="1"
             android:text="Weight" />
 
-        <EditText
+        <TextView
             android:id="@+id/profile_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:hint="Weight"
-            android:inputType="numberDecimal" />
+            android:ems="10" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,14 +69,12 @@
             android:layout_weight="1"
             android:text="Height" />
 
-        <EditText
+        <TextView
             android:id="@+id/profile_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:hint="Height"
-            android:inputType="numberDecimal" />
+            android:ems="10" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -90,14 +82,12 @@
             android:layout_weight="1"
             android:text="Age" />
 
-        <EditText
+        <TextView
             android:id="@+id/profile_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:hint="Age"
-            android:inputType="number" />
+            android:ems="10" />
 
 
         <Button

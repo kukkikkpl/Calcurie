@@ -10,7 +10,7 @@ public class User {
     private float weight;
     private float height;
     private int activityLevel;
-    private String imageBlob;
+    private String imageUrl = "";
 
     public static final String DATABASE_NAME = "calcurie_users.db";
     public static final int DATABASE_VERSION = 2;
@@ -28,14 +28,14 @@ public class User {
         this.gender = gender;
     }
 
-    public User(String id, String name, String gender, int age, float weight, float height, int activityLevel, String imageBlob) {
+    public User(String id, String name, String gender, int age, float weight, float height, int activityLevel, String imageUrl) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.weight = weight;
         this.height = height;
         this.activityLevel = activityLevel;
-        this.imageBlob = imageBlob;
+        this.imageUrl = imageUrl;
     }
 
     public class Column {
@@ -46,7 +46,7 @@ public class User {
         public static final String WEIGHT = "weight";
         public static final String HEIGHT = "height";
         public static final String ACTIVITY_LEVEL = "activity_level";
-        public static final String IMAGE_BLOB = "image_blob";
+        public static final String IMAGE_URL = "image_url";
     }
 
     public String getId() {
@@ -97,11 +97,11 @@ public class User {
         this.activityLevel = activityLevel;
     }
 
-    public String getImageBlob() {
-        return imageBlob;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImageBlob(String imageBlob) {
-        this.imageBlob = imageBlob;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

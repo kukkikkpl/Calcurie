@@ -1,5 +1,6 @@
 package com.calcurie.calcurie;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.calcurie.calcurie.util.AppUtils;
 
 import java.util.ArrayList;
 
@@ -34,6 +37,7 @@ public class MenuFragment extends Fragment {
         // add new menu here
         menu.add("Login");
         menu.add("Register");
+        menu.add("Profile");
         menu.add("Sign out");
 
         ListView menuList = getView().findViewById(R.id.menu_list);
@@ -54,10 +58,22 @@ public class MenuFragment extends Fragment {
                             .replace(R.id.activity_main, new LoginFragment())
                             .addToBackStack(null).commit();
                 } else if (menu.get(position).equals("Register")) {
+                    SharedPreferences setting = getContext().getSharedPreferences(AppUtils.PREFS_NAME, 0);
+                    boolean hasLoggedIn = setting.getBoolean("hasLoggedIn", false);
+                    if (hasLoggedIn) {
+                        Log.d("MENU", "HAS LOGGED IN");
+                    } else {
+                        getActivity()
+                                .getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.activity_main, new RegisterFragment())
+                                .addToBackStack(null).commit();
+                    }
+                } else if (menu.get(position).equals("Profile")) {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.activity_main, new RegisterFragment())
+                            .replace(R.id.activity_main, new ProfileFragment())
                             .addToBackStack(null).commit();
                 }
 

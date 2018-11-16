@@ -9,6 +9,8 @@ import android.util.Log;
 import java.io.IOException;
 
 public class AppUtils {
+
+    public static final String PREFS_NAME = "PrefsFile";
     Context context;
 
     public AppUtils(Context context) {

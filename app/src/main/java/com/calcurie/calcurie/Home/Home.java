@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.calcurie.calcurie.R;
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
 
@@ -30,21 +30,23 @@ public class Home extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        Chart();
+    }
 
-        final FitChart fitChart = (FitChart)findViewById(R.id.fitChart);
+    public void Chart(){
+        final FitChart fitChart = (FitChart)getView().findViewById(R.id.fitChart);
         fitChart.setMinValue(0f);
         fitChart.setMaxValue(100f);
-
-        findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
+        Button addBtn = (Button) getView().findViewById(R.id.add);
+        addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Resources resources = getResources();
                 Collection<FitChartValue> values = new ArrayList<>();
-                values.add(new FitChartValue(30f, resources.getColor(R.color.chart_value_1)));
-                values.add(new FitChartValue(20f, resources.getColor(R.color.chart_value_2)));
-                values.add(new FitChartValue(15f, resources.getColor(R.color.chart_value_3)));
-                values.add(new FitChartValue(10f, resources.getColor(R.color.chart_value_4)));
+                values.add(new FitChartValue(30f, R.color.chart_value_1));
+                values.add(new FitChartValue(20f, R.color.chart_value_2));
+                values.add(new FitChartValue(15f, R.color.chart_value_3));
+                values.add(new FitChartValue(10f, R.color.chart_value_4));
                 fitChart.setValues(values);
             }
         });

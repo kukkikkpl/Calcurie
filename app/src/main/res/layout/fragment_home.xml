@@ -12,12 +12,12 @@
         android:padding="8dp"
         android:gravity="center">
         <com.txusballesteros.widgets.FitChart
-            android:id="@+id/fitChat"
+            android:id="@+id/fitChart"
             android:layout_width="260dp"
             android:layout_height="260dp"
             app:strokeSize="20dp"
-            app:valueStrokeColor="#ff0000"
-            app:backStrokeColor="#00ff00"
+            app:valueStrokeColor="#59d85e"
+            app:backStrokeColor="#c9c9c9"
             app:animationMode="overdraw"/>
         <LinearLayout
             android:layout_width="wrap_content"

@@ -29,7 +29,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-auth:16.0.5'
+<<<<<<< Updated upstream
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
     implementation 'com.google.firebase:firebase-storage:16.0.4'
+=======
+    compile 'com.txusballesteros:FitChart:1.0'
+>>>>>>> Stashed changes
 }
 apply plugin: 'com.google.gms.google-services'

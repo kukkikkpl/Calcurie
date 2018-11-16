@@ -1,37 +1,37 @@
-package com.calcurie.calcurie;
+package com.calcurie.calcurie.Home;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(android.R.layout.activity_main);
+public class Home extends Fragment {
 
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         final FitChart fitChart = (FitChart)findViewById(R.id.fitChart);
         fitChart.setMinValue(0f);
         fitChart.setMaxValue(100f);
 
-        findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Resources resources = getResources();
-                Collection<FitChartValue> values = new ArrayList<>();
-                values.add(new FitChartValue(30f, resources.getColor(R.color.chart_value_1)));
-                values.add(new FitChartValue(20f, resources.getColor(R.color.chart_value_2)));
-                values.add(new FitChartValue(15f, resources.getColor(R.color.chart_value_3)));
-                values.add(new FitChartValue(10f, resources.getColor(R.color.chart_value_4)));
-                fitChart.setValues(values);
-            }
-        });
     }
 }

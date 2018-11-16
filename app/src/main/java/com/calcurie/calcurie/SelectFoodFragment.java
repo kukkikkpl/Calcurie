@@ -61,25 +61,11 @@ public class SelectFoodFragment extends Fragment {
     }
 
     private void initConfirmDialog() {
-        AlertDialog.Builder builder =
-                new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage("ยืนยันรายการที่จะบันทึกหรือไม่?");
         builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 Log.d("SelectFood", "User Accept");
-                Map<String, Food> docMeal = new HashMap<>();
-                Map<String, Object> docDiary = new HashMap<>();
-                int qtyCheck = 0;
-                for (Food item: foods) {
-                    if (item.getQty() > 0) {
-                        qtyCheck += item.getQty();
-                        docMeal.put(item.getId(), item);
-                    }
-                }
-                if (qtyCheck < 1) {
-                    Toast.makeText(getContext(), "กรุณาพิ่มจำนวนอาหาร", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 java.util.Date currentTime = Calendar.getInstance().getTime();
                 SimpleDateFormat sdf_1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -88,13 +74,33 @@ public class SelectFoodFragment extends Fragment {
                 String dateNow = sdf_1.format(currentTime);
                 String timeNow = sdf_2.format(currentTime);
 
-                Log.d("SelectFood", "dateNow = " + dateNow + " timeNow = " + timeNow);
+//                Log.d("SelectFood", "dateNow = " + dateNow + " timeNow = " + timeNow);
+
+                String dateTimeNow = dateNow + " " + timeNow;
+                ArrayList<Food> mealList = new ArrayList<>();
+
+                int qtyCheck = 0;
+                for (Food item: foods) {
+                    if (item.getQty() > 0) {
+                        qtyCheck += item.getQty();
+                        item.setDate(dateNow);
+                        item.setTime(timeNow);
+                        mealList.add(item);
+                    }
+                }
+                if (qtyCheck < 1) {
+                    Toast.makeText(getContext(), "กรุณาพิ่มจำนวนอาหาร", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Map<String, ArrayList> diary = new HashMap<>();
+                diary.put(timeNow, mealList);
 
                 fsDB.collection("Users")
                         .document(fsAuth.getUid())
-                        .collection(dateNow)
-                        .document(timeNow)
-                        .set(docMeal)
+                        .collection("Diaries")
+                        .document(dateTimeNow)
+                        .set(diary)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

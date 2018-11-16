@@ -35,8 +35,8 @@ public class MenuFragment extends Fragment {
 
         // add new menu here
         menu.add("Food Selection");
-        menu.add("add");
-        menu.add("Diary Test");
+        menu.add("Add Food");
+        menu.add("Diary");
         menu.add("Sign Out");
 
         ListView menuList = getView().findViewById(R.id.menu_list);
@@ -56,24 +56,24 @@ public class MenuFragment extends Fragment {
                             .beginTransaction()
                             .replace(R.id.main_view, new SelectFoodFragment())
                             .addToBackStack(null).commit();
+                } else if (menu.get(position).equals("Diary")) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new DiaryFragment())
+                            .addToBackStack(null)
+                            .commit();
+                } else if (menu.get(position).equals("Add Food")){
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new AddMenuFragment())
+                            .addToBackStack(null)
+                            .commit();
                 } else if(menu.get(position).equals("Sign Out")){
                     FirebaseAuth userAuth = FirebaseAuth.getInstance();
                     userAuth.signOut();
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.main_view, new LoginFragment())
-                            .addToBackStack(null)
-                            .commit();
-                } else if (menu.get(position).equals("Diary Test")) {
-                    getActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.main_view, new TestDiaryFragment())
-                            .addToBackStack(null)
-                            .commit();
-                } else if (menu.get(position).equals("add")){
-                    getActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.main_view, new AddMenuFragment())
                             .addToBackStack(null)
                             .commit();
                 }

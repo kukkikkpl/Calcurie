@@ -24,7 +24,6 @@ public class FoodAdapter extends ArrayAdapter<Food> {
     private List<Food> foods;
     private Context context;
     private View foodItem;
-    private Bundle bundle;
 
     public FoodAdapter(@NonNull Context context,
                        int resource,
@@ -32,7 +31,6 @@ public class FoodAdapter extends ArrayAdapter<Food> {
         super(context, resource, objects);
         this.foods = objects;
         this.context = context;
-        this.bundle = new Bundle();
     }
 
     @NonNull

@@ -9,6 +9,9 @@ public class Food implements Serializable {
     private int calories;
     private String img_url;
     private int qty;
+    private String date;
+    private String time;
+    private Long total_calories;
 
     public Food() {}
 
@@ -19,6 +22,13 @@ public class Food implements Serializable {
         this.calories = calories;
         this.img_url = img_url;
         this.qty = 0;
+    }
+
+    public Food(String name, Long calories, Long qty, String date, String time ) {
+        this.name = name;
+        this.total_calories = calories * qty;
+        this.date = date;
+        this.time = time;
     }
 
     public String getId() {
@@ -67,5 +77,29 @@ public class Food implements Serializable {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Long getTotal_calories() {
+        return total_calories;
+    }
+
+    public void setTotal_calories(Long total_calories) {
+        this.total_calories = total_calories;
     }
 }

@@ -3,16 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:background="@color/colorPrimary"
-        android:textAllCaps="true"
-        android:textSize="30dp"
-        android:padding="10dp"
-        />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -24,7 +14,7 @@
             android:padding="35dp">
 
             <EditText
-                android:id="@+id/reg_userEmail"
+                android:id="@+id/reg_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -39,7 +29,7 @@
                 android:inputType="textPassword"/>
 
             <EditText
-                android:id="@+id/reg_password2"
+                android:id="@+id/reg_re_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Re-Password"
@@ -56,7 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/reg_gender">
 
 
                 <TextView
@@ -70,6 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:checked="true"
                     android:text="Male" />
 
                 <RadioButton
@@ -96,7 +88,7 @@
                 android:inputType="numberDecimal" />
 
             <EditText
-                android:id="@+id/reg_password8"
+                android:id="@+id/reg_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Height"
@@ -108,7 +100,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -122,7 +113,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/reg_register"
+                android:id="@+id/reg_register_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Register" />

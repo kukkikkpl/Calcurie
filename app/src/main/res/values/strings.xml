@@ -3,4 +3,9 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="re_password">Re-Password</string>
+    <string-array name="activity_array">
+        <item>น้อย</item>
+        <item>ปานกลาง</item>
+        <item>มาก</item>
+    </string-array>
 </resources>

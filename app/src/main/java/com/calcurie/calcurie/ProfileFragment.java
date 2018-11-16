@@ -53,7 +53,7 @@ public class ProfileFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.activity_main, new EditProfileFragment())
+                        .replace(R.id.main_view, new EditProfileFragment())
                         .commit();
             }
         });
@@ -67,7 +67,7 @@ public class ProfileFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.activity_main, new MenuFragment())
+                        .replace(R.id.main_view, new MenuFragment()).disallowAddToBackStack()
                         .commit();
             }
         });

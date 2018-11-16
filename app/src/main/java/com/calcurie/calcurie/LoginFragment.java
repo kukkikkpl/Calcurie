@@ -78,11 +78,11 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("USER", "GO TO REGISTER");
-                /* getActivity()
+                getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.activity_main, new RegisterFragment())
-                        .addToBackStack(null).commit(); */
+                        .replace(R.id.main_view, new RegisterFragment())
+                        .addToBackStack(null).commit();
             }
         });
     }
@@ -106,15 +106,16 @@ public class LoginFragment extends Fragment {
                             Log.d("USER", "GET USER FROM FIRESTORE");
                             DocumentSnapshot documentSnapshot = task.getResult();
                             User user = documentSnapshot.toObject(User.class);
-                            dbHelper = new DBHelper(getContext());
+                            dbHelper = new DBHelper(getActivity());
                             dbHelper.addUser(user);
+                            getActivity()
+                                    .getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.main_view, new MenuFragment())
+                                    .disallowAddToBackStack()
+                                    .commit();
                         }
                     });
-                    /* getActivity()
-                            .getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.main_view, new MenuFragment())
-                            .addToBackStack(null).commit(); */
                 } else {
                     Toast.makeText(
                             getActivity(),

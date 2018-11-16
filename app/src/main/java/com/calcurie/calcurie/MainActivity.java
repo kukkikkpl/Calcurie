@@ -34,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_home:
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.activity_main, new MenuFragment()).commit();
+                                .replace(R.id.main_view, new MenuFragment()).commit();
                         return true;
                     case R.id.navigation_profile:
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.activity_main, new ProfileFragment()).commit();
+                                .replace(R.id.main_view, new ProfileFragment()).commit();
                         return true;
                 }
                 return false;

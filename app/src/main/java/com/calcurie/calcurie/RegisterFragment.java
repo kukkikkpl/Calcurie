@@ -176,8 +176,8 @@ public class RegisterFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.activity_main, new LoginFragment())
-                        .addToBackStack(null).commit();
+                        .replace(R.id.main_view, new LoginFragment())
+                        .disallowAddToBackStack().commit();
             }
         });
     }

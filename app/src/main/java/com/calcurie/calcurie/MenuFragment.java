@@ -71,14 +71,14 @@ public class MenuFragment extends Fragment {
                         getActivity()
                                 .getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.activity_main, new RegisterFragment())
+                                .replace(R.id.main_view, new RegisterFragment())
                                 .addToBackStack(null).commit();
                     }
                 } else if (menu.get(position).equals("Profile")) {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.activity_main, new ProfileFragment())
+                            .replace(R.id.main_view, new ProfileFragment())
                             .addToBackStack(null).commit();
                 } else if (menu.get(position).equals("Diary")) {
                     getActivity().getSupportFragmentManager()
@@ -108,7 +108,7 @@ public class MenuFragment extends Fragment {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.activity_main, new RegisterFragment())
+                            .replace(R.id.main_view, new RegisterFragment())
                             .addToBackStack(null).commit();
                 } */
             }

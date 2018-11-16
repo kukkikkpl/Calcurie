@@ -37,7 +37,6 @@ import java.util.Map;
 
 public class SelectFoodFragment extends Fragment {
     private List<Food> foods;
-    private Bundle bundle;
     private FirebaseFirestore fsDB;
     private FirebaseAuth fsAuth;
 
@@ -51,16 +50,6 @@ public class SelectFoodFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_select_food, container, false);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        try {
-            bundle.isEmpty();
-        } catch (NullPointerException ne) {
-            this.bundle = new Bundle();
-        }
     }
 
     @Override
@@ -79,6 +68,7 @@ public class SelectFoodFragment extends Fragment {
             public void onClick(DialogInterface dialog, int id) {
                 Log.d("SelectFood", "User Accept");
                 Map<String, Food> docMeal = new HashMap<>();
+                Map<String, Object> docDiary = new HashMap<>();
                 int qtyCheck = 0;
                 for (Food item: foods) {
                     if (item.getQty() > 0) {
@@ -92,7 +82,7 @@ public class SelectFoodFragment extends Fragment {
                 }
 
                 java.util.Date currentTime = Calendar.getInstance().getTime();
-                SimpleDateFormat sdf_1 = new SimpleDateFormat("yyyy-dd-MM");
+                SimpleDateFormat sdf_1 = new SimpleDateFormat("yyyy-MM-dd");
                 SimpleDateFormat sdf_2 = new SimpleDateFormat("hh:mm:ss");
 
                 String dateNow = sdf_1.format(currentTime);

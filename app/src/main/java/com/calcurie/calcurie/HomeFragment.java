@@ -57,6 +57,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = getActivity().findViewById(R.id.navigation);
+        bottomNavigationView.setVisibility(View.VISIBLE);
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         showCal();

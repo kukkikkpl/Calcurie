@@ -35,6 +35,7 @@ public class LoginFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
     private DBHelper dbHelper;
+    BottomNavigationView bottomNavigationView;
 
 
     @Nullable
@@ -48,6 +49,7 @@ public class LoginFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+
         loginBtn();
         registerBtn();
     }
@@ -113,7 +115,7 @@ public class LoginFragment extends Fragment {
                             getActivity()
                                     .getSupportFragmentManager()
                                     .beginTransaction()
-                                    .replace(R.id.main_view, new MenuFragment())
+                                    .replace(R.id.main_view, new HomeFragment())
                                     .disallowAddToBackStack()
                                     .commit();
                         }

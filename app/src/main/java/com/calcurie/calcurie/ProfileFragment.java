@@ -64,10 +64,13 @@ public class ProfileFragment extends Fragment {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                BottomNavigationView bottomNavigationView;
+                bottomNavigationView = getActivity().findViewById(R.id.navigation);
+                bottomNavigationView.setVisibility(View.GONE);
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_view, new MenuFragment()).disallowAddToBackStack()
+                        .replace(R.id.main_view, new LoginFragment()).disallowAddToBackStack()
                         .commit();
             }
         });

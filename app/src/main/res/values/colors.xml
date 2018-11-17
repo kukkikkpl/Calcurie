@@ -6,7 +6,4 @@
     <color name="colorNavIcon">#000000</color>
     <color name="colorNavText">#01294b</color>
     <color name="background">#FFFFFF</color>
-    <color name="colorNav">#00cc00</color>
-    <color name="fit">#59d85e</color>
-    <color name="over">#de5347</color>
 </resources>

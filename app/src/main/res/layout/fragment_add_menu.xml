@@ -1,118 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/add_back_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="back" />
-
-        <EditText
-            android:id="@+id/add_menu_name"
-            android:layout_width="272dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Food name" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal"
-        android:layout_margin="5dp">
+            android:text="Back" />
 
         <ImageView
             android:id="@+id/food_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="3dp"
-        android:layout_gravity="center">
 
         <ImageButton
-            android:id="@+id/take_picture_btn"
+            android:id="@+id/add_camera_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
             android:src="@android:drawable/ic_menu_camera"
             android:background="@android:color/transparent"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="จำนวน" />
 
         <EditText
-            android:id="@+id/add_menu_amount"
-            android:layout_width="43dp"
+            android:id="@+id/fragment_add_menu_food_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:ems="10"
-            android:inputType="number"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginLeft="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="แคลลอรี่" />
+            android:inputType="text"
+            android:hint="Food Name"/>
 
         <EditText
-            android:id="@+id/add_menu_call"
-            android:layout_width="54dp"
+            android:id="@+id/fragment_add_menu_food_detail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="number"/>
-    </LinearLayout>
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Food Deatail"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="20dp">
+        <EditText
+            android:id="@+id/fragment_add_menu_food_calories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Food Calories"/>
 
         <Button
             android:id="@+id/add_food_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="เพิ่ม" />
-    </LinearLayout>
+            android:text="Add" />
 
-</LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

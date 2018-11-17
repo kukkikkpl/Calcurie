@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment {
     private FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
     private DBHelper dbHelper;
+    private Long totalCal2 = 0L;
 
     @Nullable
     @Override
@@ -57,6 +58,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = getActivity().findViewById(R.id.navigation);
+        bottomNavigationView.setVisibility(View.VISIBLE);
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         showCal();
@@ -80,6 +84,7 @@ public class HomeFragment extends Fragment {
                     for (QueryDocumentSnapshot document: task.getResult()) {
                         Map<String, Object> temp = document.getData();
                         Long totalCal = (Long) temp.get("total");
+                        totalCal2 += totalCal;
                         Log.d("home", String.valueOf(totalCal));
                         TextView recommendCal = getView().findViewById(R.id.home_recommend_cal);
                         TextView haveEatenCal = getView().findViewById(R.id.home_have_eaten_cal);
@@ -89,7 +94,7 @@ public class HomeFragment extends Fragment {
                         dbHelper = new DBHelper(getContext());
                         User user = dbHelper.getUser(id);
                         int recommendCalInt = 0;
-                        int haveEatenCalInt = Integer.parseInt(String.valueOf(totalCal));
+                        int haveEatenCalInt = Integer.parseInt(String.valueOf(totalCal2));
                         int activityLevel = user.getActivityLevel();
                         String gender = user.getGender();
                         float weight = user.getWeight();
@@ -126,8 +131,13 @@ public class HomeFragment extends Fragment {
                         ArrayList<PieEntry> entries = new ArrayList<>();
 
                         // add calories data here
-                        entries.add(new PieEntry(haveEatenCalInt, "Have eaten (Calories)"));
-                        entries.add(new PieEntry(remainCalInt, "Remain (Calories)"));
+                        if (remainCalInt <= 0) {
+                            entries.add(new PieEntry(haveEatenCalInt, "Have eaten (Calories)"));
+                            entries.add(new PieEntry(0, "Remain (Calories)"));
+                        } else {
+                            entries.add(new PieEntry(haveEatenCalInt, "Have eaten (Calories)"));
+                            entries.add(new PieEntry(remainCalInt, "Remain (Calories)"));
+                        }
 
                         PieDataSet dataset = new PieDataSet(entries, "Calories");
                         dataset.setSelectionShift(10);
@@ -137,7 +147,7 @@ public class HomeFragment extends Fragment {
                         colors.add(ColorTemplate.rgb("#cccccc"));
                         dataset.setColors(colors);
                         PieData data = new PieData(dataset);
-                        chart.animateY(3000);
+                        chart.animateY(500);
                         chart.setData(data);
                         chart.setHoleRadius(70);
                         chart.getDescription().setEnabled(false);

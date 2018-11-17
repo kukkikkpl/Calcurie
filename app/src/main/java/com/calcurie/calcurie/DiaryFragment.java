@@ -1,5 +1,6 @@
 package com.calcurie.calcurie;
 
+import android.nfc.FormatException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -97,60 +98,61 @@ public class DiaryFragment extends Fragment {
         foods.clear();
 
         final Map<String, HashMap> diaries = new HashMap<>();
-                    fsDB.collection("Users")
-                    .document(fsAuth.getUid())
-                            .collection("Diaries")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
+        fsDB.collection("Users")
+                .document(fsAuth.getUid())
+                .collection("Diaries")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
 //                                    Log.d("diary", document.getId() + " => " + document.getData());
-                                    Map<String, Object> diaries = document.getData();
+                                Map<String, Object> diaries = document.getData();
 //                                    Log.d("diary", diaries.toString());
-                                    int round = 0;
-                                    for (Object list: diaries.values()) {
-                                        round++;
-                                        Log.d("diary", Integer.toString(round) + " List => " + list.toString());
-                                        if (round == 3) {
-                                            ArrayList<HashMap> arrayFood = (ArrayList<HashMap>) list;
+                                for (Object list : diaries.values()) {
+                                    try {
+                                        Log.d("diary", "List => " + list.toString());
+                                        ArrayList<HashMap> arrayFood = (ArrayList<HashMap>) list;
 //                                        Log.d("diary", arrayFood.toString());
 //                                        Log.d("diary", arrayFood.get(0).toString());
-                                            for (HashMap item: arrayFood) {
-                                                String foodName = (String) item.get("name");
-                                                Long calories = (Long) item.get("calories");
-                                                Long qty = (Long) item.get("qty");
-                                                String date = (String) item.get("date");
-                                                String time = (String) item.get("time");
+                                        for (HashMap item : arrayFood) {
+                                            String foodName = (String) item.get("name");
+                                            Long calories = (Long) item.get("calories");
+                                            Long qty = (Long) item.get("qty");
+                                            String date = (String) item.get("date");
+                                            String time = (String) item.get("time");
 //                                             String dateTime = date + " " + time;
 //                                             Log.d("diary",
 //                                             "foodName => " + foodName +
 //                                             "\ncalories => " + calories +
 //                                                     "\ndateTime =>" + dateTime
 //                                                     );
-                                                Food food = new Food(foodName, calories, qty, date, time);
-                                                foods.add(food);
+                                            Food food = new Food(foodName, calories, qty, date, time);
+                                            foods.add(food);
                                         }
-
-                                        }
+                                    } catch (ClassCastException e) {
+                                        list.toString();
                                     }
-                                }
-                                diaryAdapter.notifyDataSetChanged();
-                            } else {
-                                Log.d("diary", "Task is not successful: ", task.getException());
-                            }
 
-                            Log.d("diary", "DocumentSnapshot successfully written!");
-                            Toast.makeText(getContext(), "โหลดสำเร็จ", Toast.LENGTH_LONG).show();
+
+                                }
+                            }
+                            diaryAdapter.notifyDataSetChanged();
+                        } else {
+                            Log.d("diary", "Task is not successful: ", task.getException());
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.d("diary", "Error writing document", e);
-                    Toast.makeText(getContext(), "โหลดไม่สำเร็จ", Toast.LENGTH_SHORT).show();
-                }
-            });
+
+                        Log.d("diary", "DocumentSnapshot successfully written!");
+                        Toast.makeText(getContext(), "โหลดสำเร็จ", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("diary", "Error writing document", e);
+                Toast.makeText(getContext(), "โหลดไม่สำเร็จ", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Log.d("diary", "Diaries = " + diaries.toString());
     }

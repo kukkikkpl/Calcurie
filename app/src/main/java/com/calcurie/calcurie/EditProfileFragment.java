@@ -28,7 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.File;
 import java.util.Date;
 
-import static com.calcurie.calcurie.AddMenuFragment.REQUEST_CAMERA;
 
 public class EditProfileFragment extends Fragment {
     public static final int REQUEST_CAMERA = 2;
@@ -106,24 +105,6 @@ public class EditProfileFragment extends Fragment {
                             .disallowAddToBackStack()
                             .commit();
                 }
-            }
-        });
-    }
-
-    private void initCameraButton(){
-        Button cameraButton = (Button) getView().findViewById(R.id.edit_profile_camera);
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                String timeStamp =
-                        new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                String imageFileName = "IMG_" + timeStamp + ".jpg";
-                File f = new File(Environment.getExternalStorageDirectory()
-                        , "DCIM/Camera/" + imageFileName);
-                uri = Uri.fromFile(f);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-                startActivityForResult(Intent.createChooser(intent, "Take a picture with"), REQUEST_CAMERA);
             }
         });
     }

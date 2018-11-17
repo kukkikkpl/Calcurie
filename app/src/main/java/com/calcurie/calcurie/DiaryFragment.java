@@ -112,7 +112,7 @@ public class DiaryFragment extends Fragment {
                                     int round = 0;
                                     for (Object list: diaries.values()) {
                                         round++;
-//                                        Log.d("diary", "List => " + list.toString());
+                                       Log.d("diary", "List => " + list.toString());
                                         if(round == 3){
                                             ArrayList<HashMap> arrayFood = (ArrayList<HashMap>) list;
 //                                        Log.d("diary", arrayFood.toString());

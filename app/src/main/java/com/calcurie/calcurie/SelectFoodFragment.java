@@ -115,11 +115,7 @@ public class SelectFoodFragment extends Fragment {
                             public void onSuccess(Void aVoid) {
                                 Log.d("SelectFood", "DocumentSnapshot successfully written!");
                                 Toast.makeText(getContext(), "บันทึกสำเร็จ", Toast.LENGTH_LONG).show();
-//                                getActivity().getSupportFragmentManager()
-//                                        .beginTransaction()
-//                                        .replace(R.id.main_view, new MenuFragment())
-//                                        .addToBackStack(null)
-//                                        .commit();
+
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -131,8 +127,9 @@ public class SelectFoodFragment extends Fragment {
                         });
 
                 Map<String, Object> diary2 = new HashMap<>();
-                diary2.put("date", dateNow);
-                diary2.put("total", TCalPerMeal);
+                diary2.put("date",dateNow);
+                diary2.put("total",TCalPerMeal);
+
                 fsDB.collection("Users")
                         .document(fsAuth.getUid())
                         .collection("Diaries") //2018-12-12 dateNow

@@ -1,8 +1,10 @@
 package com.calcurie.calcurie;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,15 +16,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.calcurie.calcurie.model.User;
+import com.calcurie.calcurie.util.AppUtils;
+import com.calcurie.calcurie.util.DBHelper;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Source;
 
 public class LoginFragment extends Fragment {
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firestore;
+    private DBHelper dbHelper;
+
 
     @Nullable
     @Override
@@ -34,6 +47,7 @@ public class LoginFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
         loginBtn();
         registerBtn();
     }
@@ -66,11 +80,11 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("USER", "GO TO REGISTER");
-                /* getActivity()
+                getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.activity_main, new RegisterFragment())
-                        .addToBackStack(null).commit(); */
+                        .replace(R.id.main_view, new RegisterFragment())
+                        .addToBackStack(null).commit();
             }
         });
     }
@@ -82,11 +96,28 @@ public class LoginFragment extends Fragment {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user.isEmailVerified()) {
                     Log.d("USER", "GO TO MENU");
-                     getActivity()
-                            .getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.main_view, new MenuFragment())
-                            .addToBackStack(null).commit();
+                    SharedPreferences setting = getContext().getSharedPreferences(AppUtils.PREFS_NAME, 0);
+                    SharedPreferences.Editor editor = setting.edit();
+                    editor.putBoolean("hasLoggedIn", true);
+                    editor.putString("id", user.getUid());
+                    editor.commit();
+                    firestore.collection("Users").document(user.getUid())
+                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            Log.d("USER", "GET USER FROM FIRESTORE");
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            User user = documentSnapshot.toObject(User.class);
+                            dbHelper = new DBHelper(getActivity());
+                            dbHelper.addUser(user);
+                            getActivity()
+                                    .getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.main_view, new MenuFragment())
+                                    .disallowAddToBackStack()
+                                    .commit();
+                        }
+                    });
                 } else {
                     Toast.makeText(
                             getActivity(),
@@ -109,4 +140,5 @@ public class LoginFragment extends Fragment {
             }
         });
     }
+
 }

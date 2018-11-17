@@ -115,6 +115,8 @@ public class DiaryFragment extends Fragment {
                                         Log.d("diary", Integer.toString(round) + " List => " + list.toString());
                                         if (round == 3) {
                                             ArrayList<HashMap> arrayFood = (ArrayList<HashMap>) list;
+//                                        Log.d("diary", arrayFood.toString());
+//                                        Log.d("diary", arrayFood.get(0).toString());
                                             for (HashMap item: arrayFood) {
                                                 String foodName = (String) item.get("name");
                                                 Long calories = (Long) item.get("calories");
@@ -129,7 +131,8 @@ public class DiaryFragment extends Fragment {
 //                                                     );
                                                 Food food = new Food(foodName, calories, qty, date, time);
                                                 foods.add(food);
-                                            }
+                                        }
+
                                         }
                                     }
                                 }

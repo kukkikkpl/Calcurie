@@ -1,5 +1,6 @@
 package com.calcurie.calcurie;
 
+import android.content.SharedPreferences;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.calcurie.calcurie.util.AppUtils;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -51,9 +54,13 @@ public class MenuFragment extends Fragment {
         menu.clear();
 
         // add new menu here
+        menu.add("Login");
+        menu.add("Register");
+        menu.add("Profile");
         menu.add("Food Selection");
         menu.add("Add Food");
         menu.add("Diary");
+        menu.add("Home");
         menu.add("Sign Out");
 
         ListView menuList = getView().findViewById(R.id.menu_list);
@@ -72,6 +79,24 @@ public class MenuFragment extends Fragment {
                             .getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.main_view, new SelectFoodFragment())
+                            .addToBackStack(null).commit();
+                } else if (menu.get(position).equals("Register")) {
+                    SharedPreferences setting = getContext().getSharedPreferences(AppUtils.PREFS_NAME, 0);
+                    boolean hasLoggedIn = setting.getBoolean("hasLoggedIn", false);
+                    if (hasLoggedIn) {
+                        Log.d("MENU", "HAS LOGGED IN");
+                    } else {
+                        getActivity()
+                                .getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.main_view, new RegisterFragment())
+                                .addToBackStack(null).commit();
+                    }
+                } else if (menu.get(position).equals("Profile")) {
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new ProfileFragment())
                             .addToBackStack(null).commit();
                 } else if (menu.get(position).equals("Diary")) {
                     getActivity().getSupportFragmentManager()
@@ -93,24 +118,23 @@ public class MenuFragment extends Fragment {
                             .replace(R.id.main_view, new LoginFragment())
                             .addToBackStack(null)
                             .commit();
+                } else if(menu.get(position).equals("Home")) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new HomeFragment())
+                            .addToBackStack(null)
+                            .commit();
                 }
-
                 // add link to other fragments here
 
                 /* else if (menu.get(position).equals("Register")) {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.activity_main, new RegisterFragment())
+                            .replace(R.id.main_view, new RegisterFragment())
                             .addToBackStack(null).commit();
                 } */
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
 }

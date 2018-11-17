@@ -62,7 +62,7 @@ public class AddMenuFragment extends Fragment {
         });
     }
     private void initCameraButton(){
-        ImageButton cameraButton = (ImageButton) getView().findViewById(R.id.take_picture_btn);
+        ImageButton cameraButton = (ImageButton) getView().findViewById(R.id.add_camera_btn);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

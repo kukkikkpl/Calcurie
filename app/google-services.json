@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "853554081869",
+    "firebase_url": "https://calcurie-6322c.firebaseio.com",
+    "project_id": "calcurie-6322c",
+    "storage_bucket": "calcurie-6322c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853554081869:android:73efdd618efc6120",
+        "android_client_info": {
+          "package_name": "com.calcurie.calcurie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853554081869-uaskt9bgoeivcpbmq34ctlkbfj0bk6e5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD74yKgKxn3qrqkIs8TyFz6eLprtH_BMBM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

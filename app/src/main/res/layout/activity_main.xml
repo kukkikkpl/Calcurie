@@ -15,6 +15,7 @@ tools:context=".MainActivity">
     android:elevation="4dp"
     android:minHeight="?attr/actionBarSize"
     />
+    
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

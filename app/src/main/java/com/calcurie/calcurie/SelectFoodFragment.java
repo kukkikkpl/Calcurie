@@ -115,6 +115,34 @@ public class SelectFoodFragment extends Fragment {
                             public void onSuccess(Void aVoid) {
                                 Log.d("SelectFood", "DocumentSnapshot successfully written!");
                                 Toast.makeText(getContext(), "บันทึกสำเร็จ", Toast.LENGTH_LONG).show();
+//                                getActivity().getSupportFragmentManager()
+//                                        .beginTransaction()
+//                                        .replace(R.id.main_view, new MenuFragment())
+//                                        .addToBackStack(null)
+//                                        .commit();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d("SelectFood", "Error writing document", e);
+                                Toast.makeText(getContext(), "บันทึกล้มเหลว", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                Map<String, Object> diary2 = new HashMap<>();
+                diary2.put("date", dateNow);
+                diary2.put("total", TCalPerMeal);
+                fsDB.collection("Users")
+                        .document(fsAuth.getUid())
+                        .collection("Diaries") //2018-12-12 dateNow
+                        .document(dateTimeNow)   //12:12:12 timeNow
+                        .update(diary2)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d("SelectFood", "DocumentSnapshot successfully written!");
+                                Toast.makeText(getContext(), "บันทึกสำเร็จ", Toast.LENGTH_LONG).show();
                                 getActivity().getSupportFragmentManager()
                                         .beginTransaction()
                                         .replace(R.id.main_view, new MenuFragment())
@@ -129,6 +157,7 @@ public class SelectFoodFragment extends Fragment {
                                 Toast.makeText(getContext(), "บันทึกล้มเหลว", Toast.LENGTH_SHORT).show();
                             }
                         });
+
 
             }
         });

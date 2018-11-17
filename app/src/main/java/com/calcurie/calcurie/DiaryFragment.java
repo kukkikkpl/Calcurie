@@ -109,25 +109,27 @@ public class DiaryFragment extends Fragment {
 //                                    Log.d("diary", document.getId() + " => " + document.getData());
                                     Map<String, Object> diaries = document.getData();
 //                                    Log.d("diary", diaries.toString());
+                                    int round = 0;
                                     for (Object list: diaries.values()) {
-//                                        Log.d("diary", "List => " + list.toString());
-                                        ArrayList<HashMap> arrayFood = (ArrayList<HashMap>) list;
-//                                        Log.d("diary", arrayFood.toString());
-//                                        Log.d("diary", arrayFood.get(0).toString());
-                                        for (HashMap item: arrayFood) {
-                                             String foodName = (String) item.get("name");
-                                             Long calories = (Long) item.get("calories");
-                                             Long qty = (Long) item.get("qty");
-                                             String date = (String) item.get("date");
-                                             String time = (String) item.get("time");
+                                        round++;
+                                        Log.d("diary", "List => " + list.toString());
+                                        if (round == 3) {
+                                            ArrayList<HashMap> arrayFood = (ArrayList<HashMap>) list;
+                                            for (HashMap item: arrayFood) {
+                                                String foodName = (String) item.get("name");
+                                                Long calories = (Long) item.get("calories");
+                                                Long qty = (Long) item.get("qty");
+                                                String date = (String) item.get("date");
+                                                String time = (String) item.get("time");
 //                                             String dateTime = date + " " + time;
 //                                             Log.d("diary",
 //                                             "foodName => " + foodName +
 //                                             "\ncalories => " + calories +
 //                                                     "\ndateTime =>" + dateTime
 //                                                     );
-                                            Food food = new Food(foodName, calories, qty, date, time);
-                                            foods.add(food);
+                                                Food food = new Food(foodName, calories, qty, date, time);
+                                                foods.add(food);
+                                            }
                                         }
                                     }
                                 }

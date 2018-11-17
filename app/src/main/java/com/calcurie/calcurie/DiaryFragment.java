@@ -146,7 +146,6 @@ public class DiaryFragment extends Fragment {
                     Toast.makeText(getContext(), "โหลดไม่สำเร็จ", Toast.LENGTH_SHORT).show();
                 }
             });
-//        }
 
         Log.d("diary", "Diaries = " + diaries.toString());
     }

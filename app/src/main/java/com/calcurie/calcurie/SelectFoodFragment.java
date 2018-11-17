@@ -78,13 +78,18 @@ public class SelectFoodFragment extends Fragment {
 
                 String dateTimeNow = dateNow + " " + timeNow;
                 ArrayList<Food> mealList = new ArrayList<>();
+                Map<String, Food> mealList2 = new HashMap<>();
 
                 int qtyCheck = 0;
+                int TCalPerMeal = 0;
                 for (Food item: foods) {
                     if (item.getQty() > 0) {
                         qtyCheck += item.getQty();
                         item.setDate(dateNow);
                         item.setTime(timeNow);
+                        int temp = item.getCalories() * item.getQty();
+                        TCalPerMeal += temp;
+                        mealList2.put(item.getId(), item);
                         mealList.add(item);
                     }
                 }
@@ -92,14 +97,18 @@ public class SelectFoodFragment extends Fragment {
                     Toast.makeText(getContext(), "กรุณาพิ่มจำนวนอาหาร", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 Map<String, ArrayList> diary = new HashMap<>();
+//                Map<String, ArrayList> diary = new HashMap<>();
+
                 diary.put(timeNow, mealList);
+//                diary.put("meal", mealList2);
+//                diary.put("date", dateNow);
+//                diary.put("total_cal_per_meal", TCalPerMeal);
 
                 fsDB.collection("Users")
                         .document(fsAuth.getUid())
-                        .collection("Diaries")
-                        .document(dateTimeNow)
+                        .collection("Diaries") //2018-12-12 dateNow
+                        .document(dateTimeNow)   //12:12:12 timeNow
                         .set(diary)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

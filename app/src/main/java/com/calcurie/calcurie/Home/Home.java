@@ -32,7 +32,7 @@ public class Home extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         Chart();
-        addBtn();
+        allBtn();
     }
 
     public void Chart(){
@@ -53,12 +53,38 @@ public class Home extends Fragment {
         fitChart.setValues(values);
     }
 
-    public void addBtn() {
-        Button addBtn = (Button) getView().findViewById(R.id.add);
+    public void allBtn() {
+        Button addBtn = (Button) getView().findViewById(R.id.add_home_btn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("HOME", "GO ADD FOOD");
+                Log.d("HOME", "GO TO ADD FOOD");
+                /* getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.activity_main, new DiaryFragment())
+                        .addToBackStack(null).commit(); */
+            }
+        });
+
+        Button diaryBtn = (Button) getView().findViewById(R.id.diary_home_btn);
+        diaryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("HOME", "GO TO DIARY");
+                /* getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.activity_main, new DiaryFragment())
+                        .addToBackStack(null).commit(); */
+            }
+        });
+
+        Button userBtn = (Button) getView().findViewById(R.id.user_home_btn);
+        userBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("HOME", "GO TO ACCOUNT");
                 /* getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()

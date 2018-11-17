@@ -4,9 +4,11 @@
     <string name="password">Password</string>
     <string name="re_password">Re-Password</string>
     <string-array name="activity_array">
-        <item>น้อย</item>
-        <item>ปานกลาง</item>
-        <item>มาก</item>
+        <item>ไม่ออกกำลังกาย/น้อยมาก</item>
+        <item>1–3 วันต่อสัปดาห์</item>
+        <item>3–5 วันต่อสัปดาห์</item>
+        <item>6–7 วันต่อสัปดาห์</item>
+        <item>ออกกำลังกายอย่างหนัก</item>
     </string-array>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>

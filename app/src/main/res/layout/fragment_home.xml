@@ -24,6 +24,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/home_recommend_cal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2000"
@@ -46,6 +47,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/home_have_eaten_cal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2000"
@@ -67,6 +69,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/home_remain_cal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2000"

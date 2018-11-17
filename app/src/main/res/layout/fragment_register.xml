@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@drawable/background_gradient">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,14 +26,14 @@
                 android:id="@+id/reg_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="password"
+                android:hint="Password"
                 android:inputType="textPassword"/>
 
             <EditText
                 android:id="@+id/reg_re_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Re-Password"
+                android:hint="Re-password"
                 android:inputType="textPassword"/>
 
             <EditText
@@ -85,14 +85,14 @@
                 android:id="@+id/reg_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Weight"
+                android:hint="Weight (kg)"
                 android:inputType="numberDecimal" />
 
             <EditText
                 android:id="@+id/reg_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Height"
+                android:hint="Height (cm)"
                 android:inputType="numberDecimal" />
 
             <LinearLayout
@@ -103,12 +103,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Activity" />
+                    android:layout_weight="0.3"
+                    android:text="Activity"
+                    android:textSize="16dp"/>
 
                 <Spinner
                     android:id="@+id/reg_activity"
-                    android:layout_width="242dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
             </LinearLayout>
@@ -117,7 +118,8 @@
                 android:id="@+id/reg_register_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Register" />
+                android:text="Register"
+                android:backgroundTint="#FFFFFF"/>
         </LinearLayout>
     </ScrollView>
 

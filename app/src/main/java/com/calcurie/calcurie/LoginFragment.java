@@ -36,6 +36,7 @@ public class LoginFragment extends Fragment {
     private FirebaseFirestore firestore;
     private DBHelper dbHelper;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -60,6 +60,7 @@ public class MenuFragment extends Fragment {
         menu.add("Food Selection");
         menu.add("Add Food");
         menu.add("Diary");
+        menu.add("Home");
         menu.add("Sign Out");
 
         ListView menuList = getView().findViewById(R.id.menu_list);
@@ -117,8 +118,13 @@ public class MenuFragment extends Fragment {
                             .replace(R.id.main_view, new LoginFragment())
                             .addToBackStack(null)
                             .commit();
+                } else if(menu.get(position).equals("Home")) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new HomeFragment())
+                            .addToBackStack(null)
+                            .commit();
                 }
-
                 // add link to other fragments here
 
                 /* else if (menu.get(position).equals("Register")) {
@@ -130,11 +136,5 @@ public class MenuFragment extends Fragment {
                 } */
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
 }

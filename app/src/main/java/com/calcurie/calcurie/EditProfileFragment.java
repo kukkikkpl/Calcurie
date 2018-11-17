@@ -94,10 +94,4 @@ public class EditProfileFragment extends Fragment {
             }
         });
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-    }
 }

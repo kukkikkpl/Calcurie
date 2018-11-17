@@ -10,7 +10,7 @@ public class User {
     private float weight;
     private float height;
     private int activityLevel;
-    private String imageUrl = "";
+    private String imageUrl;
 
     public static final String DATABASE_NAME = "calcurie_users.db";
     public static final int DATABASE_VERSION = 2;

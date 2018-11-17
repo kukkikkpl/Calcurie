@@ -12,6 +12,9 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
@@ -20,35 +23,44 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.navigation);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user;
+
+        user = mAuth.getCurrentUser();
+
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.main_view, new LoginFragment())
                     .commit();
         }
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.navigation_diary:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.main_view, new DiaryFragment()).commit();
-                        return true;
-                    case R.id.navigation_home:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.main_view, new MenuFragment()).commit();
-                        return true;
-                    case R.id.navigation_profile:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.main_view, new ProfileFragment()).commit();
-                        return true;
+
+            bottomNavigationView = findViewById(R.id.navigation);
+
+            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.navigation_diary:
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.main_view, new DiaryFragment()).commit();
+                            return true;
+                        case R.id.navigation_home:
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.main_view, new MenuFragment()).commit();
+                            return true;
+                        case R.id.navigation_profile:
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.main_view, new ProfileFragment()).commit();
+                            return true;
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
+
+
     }
 }

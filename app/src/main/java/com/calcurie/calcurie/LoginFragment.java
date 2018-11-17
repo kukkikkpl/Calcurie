@@ -33,6 +33,7 @@ import com.google.firebase.firestore.Source;
 public class LoginFragment extends Fragment {
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
     private FirebaseFirestore firestore;
     private DBHelper dbHelper;
 
@@ -48,6 +49,7 @@ public class LoginFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+        user = firebaseAuth.getCurrentUser();
         loginBtn();
         registerBtn();
     }

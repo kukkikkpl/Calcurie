@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -6,58 +6,38 @@
     android:background="@color/background">
 
 
-        <LinearLayout
-            android:layout_width="368dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:orientation="horizontal"
-            android:weightSum="21"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    <TextView
+        android:id="@+id/fragment_diary_item_food_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Loading"
+        android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/fragment_diary_item_food_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:text="Loading"
-                android:textSize="25sp" />
+    <TextView
+        android:id="@+id/fragment_diary_item_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:paddingRight="10dp"
+        android:text="Loading"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="25sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:layout_weight="11"
-                android:orientation="vertical"
-                android:weightSum="21">
+    <TextView
+        android:id="@+id/fragment_diary_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:paddingRight="10dp"
+        android:text="Loading"
+        android:textAlignment="viewEnd"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/fragment_diary_item_calories"
+        android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/fragment_diary_item_calories"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="2dp"
-                    android:layout_weight="8"
-                    android:paddingRight="10dp"
-                    android:text="Loading"
-                    android:textAlignment="viewEnd"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/fragment_diary_item_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="2dp"
-                    android:layout_weight="13"
-                    android:paddingRight="10dp"
-                    android:text="Loading"
-                    android:textAlignment="viewEnd"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-        </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

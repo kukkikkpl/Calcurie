@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:orientation="vertical">
-
         <android.support.v7.widget.CardView
+            android:id="@+id/edit_card"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:elevation="12dp"
-            app:cardCornerRadius="75dp">
+            app:cardCornerRadius="75dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/edit_profile_avatar"
@@ -27,21 +25,28 @@
                 android:src="@drawable/profile" />
         </android.support.v7.widget.CardView>
 
-        <LinearLayout
+        <Button
+            android:layout_height="wrap_content"
+            android:text="Upload avatar via camera"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:layout_height="match_parent"
-                android:text="Upload avatar via camera"
-                android:layout_width="match_parent"
-                android:backgroundTint="@android:color/white"
-                android:id="@+id/edit_profile_camera"/>
-        </LinearLayout>
+            android:backgroundTint="@android:color/white"
+            android:id="@+id/edit_profile_camera"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/edit_card"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"/>
 
         <LinearLayout
+            android:id="@+id/linear_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_below="@+id/edit_profile_camera"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerHorizontal="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -55,13 +60,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:inputType="text" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/linear_weight"
+            android:layout_below="@+id/linear_name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerHorizontal="true"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,13 +87,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:inputType="numberDecimal" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/linear_height"
+            android:layout_below="@+id/linear_weight"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerHorizontal="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -95,13 +112,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:inputType="numberDecimal"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/linear_age"
+            android:layout_below="@+id/linear_height"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerHorizontal="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -115,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:inputType="number"/>
         </LinearLayout>
         <Button
@@ -124,6 +146,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Save"
+            android:layout_below="@+id/linear_age"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerHorizontal="true"
             android:backgroundTint="@android:color/white"/>
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>

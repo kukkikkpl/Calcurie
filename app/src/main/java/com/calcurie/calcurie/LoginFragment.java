@@ -33,6 +33,7 @@ import com.google.firebase.firestore.Source;
 public class LoginFragment extends Fragment {
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
     private FirebaseFirestore firestore;
     private DBHelper dbHelper;
 

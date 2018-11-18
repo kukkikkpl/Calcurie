@@ -59,14 +59,9 @@ public class MenuFragment extends Fragment {
         menu.clear();
 
         // add new menu here
-        menu.add("Login");
-        menu.add("Register");
-        menu.add("Profile");
         menu.add("Food Selection");
         menu.add("Add Food");
-        menu.add("Diary");
-        menu.add("Home");
-        menu.add("Sign Out");
+        menu.add("Report");
 
         ListView menuList = getView().findViewById(R.id.menu_list);
         final ArrayAdapter<String> menuAdapter = new ArrayAdapter<String>(

@@ -80,11 +80,11 @@ public class EditProfileFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         firestore = FirebaseFirestore.getInstance();
         showEditProfile();
-        save();
         initOpenCamera();
         initSaveButton();
     }
 
+    //Set Information to all textboxes
     public void showEditProfile() {
         SharedPreferences setting = getContext().getSharedPreferences(AppUtils.PREFS_NAME, 0);
         id = setting.getString("id", null);
@@ -142,8 +142,15 @@ public class EditProfileFragment extends Fragment {
 //        });
 //    }
 
-    public void initSaveButton(){
-        uploadPhoto();
+    public void initSaveButton() {
+        Button editProfileSaveBtn = getView().findViewById(R.id.edit_profile_save);
+        editProfileSaveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadPhoto();
+            }
+        });
+
     }
 
     public void save() {
@@ -170,20 +177,19 @@ public class EditProfileFragment extends Fragment {
             );
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.main_view, new ProfileFragment())
-                    .disallowAddToBackStack()
+                    .replace(R.id.main_view, new ProfileFragment()).disallowAddToBackStack()
                     .commit();
         }
     }
 
-    public void initOpenCamera(){
+    public void initOpenCamera() {
         Button cameraButton = getView().findViewById(R.id.edit_profile_camera);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent.createChooser(intent, "Choose Camera"),REQUEST_CAMERA);
-                Log.d("add","Open Camera");
+                startActivityForResult(intent.createChooser(intent, "Choose Camera"), REQUEST_CAMERA);
+                Log.d("add", "Open Camera");
             }
         });
     }
@@ -197,42 +203,42 @@ public class EditProfileFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == Activity.RESULT_OK){
-            if(requestCode == REQUEST_CAMERA){
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_CAMERA) {
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
                 profileImage = getView().findViewById(R.id.edit_profile_avatar);
                 profileImage.setImageBitmap(photo);
 
-                selectedImage = getImageUri(getActivity(),photo);
+                selectedImage = getImageUri(getActivity(), photo);
                 String realPath = getRealPathFromURI(selectedImage);
                 selectedImage = Uri.parse(realPath);
             }
         }
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage){
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG,100,bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(),inImage,"Title",null);
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
     }
 
-    public String getRealPathFromURI(Uri contentUri){
+    public String getRealPathFromURI(Uri contentUri) {
         Cursor cursor = null;
-        try{
+        try {
             String[] proj = {MediaStore.Images.Media.DATA};
-            cursor = getActivity().getContentResolver().query(contentUri,proj,null,null,null);
+            cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             return cursor.getString(column_index);
         } finally {
-            if (cursor!=null){
+            if (cursor != null) {
                 cursor.close();
             }
         }
     }
 
-    public void uploadPhoto(){
+    public void uploadPhoto() {
         final String uid = mAuth.getUid();
         java.util.Date currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -249,19 +255,19 @@ public class EditProfileFragment extends Fragment {
 
         Bitmap bitmap = ((BitmapDrawable) profileImage.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = profileRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("add","Fail" + e.getMessage());
+                Log.d("add", "Fail" + e.getMessage());
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.d("add","Upload Sucess" + taskSnapshot.getMetadata());
+                Log.d("add", "Upload Sucess" + taskSnapshot.getMetadata());
             }
         });
 
@@ -269,7 +275,7 @@ public class EditProfileFragment extends Fragment {
         Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                if(!task.isSuccessful()){
+                if (!task.isSuccessful()) {
                     throw task.getException();
                 }
                 return profileRef.getDownloadUrl();
@@ -277,12 +283,12 @@ public class EditProfileFragment extends Fragment {
         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Uri downloadUri = task.getResult();
                     String strUrl = downloadUri.toString();
-                     strURL = strUrl;
-                     Log.d("add", "strURL = " + strURL);
-                     save();
+                    strURL = strUrl;
+                    Log.d("add", "strURL = " + strURL);
+                    save();
                 }
             }
         });

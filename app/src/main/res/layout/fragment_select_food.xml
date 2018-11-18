@@ -5,13 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@drawable/background_gradient">
+
+    <Button
+        android:id="@+id/fragment_select_food_back_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Back"
+        android:backgroundTint="@android:color/white"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,23 +34,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/fragment_select_food_menu_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Menu" />
-
             <ListView
                 android:id="@+id/fragment_select_food_list"
                 android:layout_width="match_parent"
-                android:layout_height="397dp"
+                android:layout_height="420dp"
                 android:nestedScrollingEnabled="true" />
-
             <Button
                 android:id="@+id/fragment_select_food_accept_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Accept" />
+                android:text="บันทึก"
+                android:backgroundTint="@android:color/white"/>
+            <Button
+                android:id="@+id/fragment_select_food_new_food_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="เพิ่มเมนูอาหารใหม่"
+                android:backgroundTint="@android:color/white"/>
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

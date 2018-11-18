@@ -69,8 +69,6 @@ public class AddMenuFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
-
         initBackButton();
         initOpenCamera();
         initAddFoodButton();
@@ -89,6 +87,16 @@ public class AddMenuFragment extends Fragment {
     public void initOpenCamera(){
         ImageButton cameraButton = (ImageButton) getView().findViewById(R.id.add_camera_btn);
         cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent.createChooser(intent, "Choose Camera"),OPEN_CAMERA);
+                Log.d("add","Open Camera");
+            }
+        });
+
+        ImageView image = (ImageView) getView().findViewById(R.id.food_img);
+        image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -225,8 +233,7 @@ public class AddMenuFragment extends Fragment {
                 Toast.makeText(getContext(), "บันทึกสำเร็จ", Toast.LENGTH_LONG).show();
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_view, new MenuFragment())
-                        .addToBackStack(null)
+                        .replace(R.id.main_view, new SelectFoodFragment())
                         .commit();
             }
         }).addOnFailureListener(new OnFailureListener() {

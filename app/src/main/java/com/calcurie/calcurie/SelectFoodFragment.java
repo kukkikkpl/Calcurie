@@ -10,24 +10,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.calcurie.calcurie.model.Food;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.type.Date;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,7 +51,9 @@ public class SelectFoodFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initMenuBtn();
+        //initMenuBtn();
+        initAddFoodBtn();
+        initBackBtn();
         initAcceptFoodBtn();
         getValueDB();
     }
@@ -94,7 +92,7 @@ public class SelectFoodFragment extends Fragment {
                     }
                 }
                 if (qtyCheck < 1) {
-                    Toast.makeText(getContext(), "กรุณาพิ่มจำนวนอาหาร", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "กรุณาเพิ่มจำนวณอาหาร", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Map<String, ArrayList> diary = new HashMap<>();
@@ -142,8 +140,7 @@ public class SelectFoodFragment extends Fragment {
                                 Toast.makeText(getContext(), "บันทึกสำเร็จ", Toast.LENGTH_LONG).show();
                                 getActivity().getSupportFragmentManager()
                                         .beginTransaction()
-                                        .replace(R.id.main_view, new MenuFragment())
-                                        .addToBackStack(null)
+                                        .replace(R.id.main_view, new DiaryFragment())
                                         .commit();
                             }
                         })
@@ -198,7 +195,7 @@ public class SelectFoodFragment extends Fragment {
             }
         });
     }
-
+    /*
     private void initMenuBtn() {
         Button menuBtn = getView().findViewById(R.id.fragment_select_food_menu_btn);
 
@@ -213,6 +210,7 @@ public class SelectFoodFragment extends Fragment {
             }
         });
     }
+    */
 
     private void initAcceptFoodBtn() {
         Button mButtonDialog = (Button) getView().findViewById(R.id.fragment_select_food_accept_btn);
@@ -221,6 +219,35 @@ public class SelectFoodFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 initConfirmDialog();
+            }
+        });
+    }
+
+    private void initAddFoodBtn() {
+        Button mButtonDialog = (Button) getView().findViewById(R.id.fragment_select_food_new_food_btn);
+
+        mButtonDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main_view, new AddMenuFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+    private void initBackBtn() {
+        Button mButtonDialog = (Button) getView().findViewById(R.id.fragment_select_food_back_btn);
+
+        mButtonDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main_view, new DiaryFragment())
+                        .commit();
             }
         });
     }

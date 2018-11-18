@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.navigation_home:
                             getSupportFragmentManager()
                                     .beginTransaction()
-                                    .replace(R.id.main_view, new MenuFragment()).commit();
+                                    .replace(R.id.main_view, new HomeFragment()).commit();
                             return true;
                         case R.id.navigation_profile:
                             getSupportFragmentManager()

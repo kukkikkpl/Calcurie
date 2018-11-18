@@ -7,25 +7,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient">
 
-
-    <Button
-        android:id="@+id/fragment_diary_menu_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Menu"
-        android:backgroundTint="@android:color/white"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
-
     <ScrollView
         android:id="@+id/fragment_menu_scroll"
         android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_diary_menu_btn">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +20,7 @@
             <ListView
                 android:id="@+id/fragment_diary_list"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="500dp"
                 android:nestedScrollingEnabled="true" />
 
 

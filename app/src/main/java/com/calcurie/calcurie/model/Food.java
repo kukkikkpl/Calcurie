@@ -1,4 +1,4 @@
-package com.calcurie.calcurie;
+package com.calcurie.calcurie.model;
 
 import java.io.Serializable;
 

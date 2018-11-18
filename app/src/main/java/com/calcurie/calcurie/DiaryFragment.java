@@ -1,11 +1,9 @@
 package com.calcurie.calcurie;
 
-import android.nfc.FormatException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.calcurie.calcurie.model.Food;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -49,7 +48,7 @@ public class DiaryFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initMenuBtn();
+        //initMenuBtn();
         initAddFoodBtn();
         getValueDB();
     }
@@ -62,13 +61,14 @@ public class DiaryFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_view, new AddMenuFragment())
+                        .replace(R.id.main_view, new SelectFoodFragment())
                         .addToBackStack(null)
                         .commit();
             }
         });
     }
 
+/*
     private void initMenuBtn() {
         Button menuBtn = getView().findViewById(R.id.fragment_diary_menu_btn);
 
@@ -83,6 +83,7 @@ public class DiaryFragment extends Fragment {
             }
         });
     }
+    */
 
     private void getValueDB() {
 

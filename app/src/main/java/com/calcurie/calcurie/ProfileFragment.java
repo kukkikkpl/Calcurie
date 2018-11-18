@@ -70,7 +70,7 @@ public class ProfileFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_view, new LoginFragment()).disallowAddToBackStack()
+                        .replace(R.id.main_view, new LoginFragment())
                         .commit();
             }
         });

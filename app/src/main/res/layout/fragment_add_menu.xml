@@ -1,89 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
 
 
-        <Button
-            android:id="@+id/add_back_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"/>
+    <Button
+        android:id="@+id/add_back_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:text="Back"
+        android:backgroundTint="@android:color/white"/>
 
-        <ImageView
-            android:id="@+id/food_img"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            android:layout_below="@id/add_back_button"
-            android:src="@drawable/image_placeholder"
-            />
+    <ImageView
+        android:id="@+id/food_img"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/add_back_button"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:src="@drawable/image_placeholder" />
 
-        <ImageButton
-            android:id="@+id/add_camera_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_menu_camera"
-            android:background="@android:color/transparent"
-            android:layout_below="@id/food_img"
-            android:layout_centerHorizontal="true"/>
+    <ImageButton
+        android:id="@+id/add_camera_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/food_img"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_menu_camera" />
 
-        <EditText
-            android:id="@+id/fragment_add_menu_food_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Food Name"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/add_camera_btn"/>
+    <EditText
+        android:id="@+id/fragment_add_menu_food_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_camera_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="Food Name"
+        android:inputType="text" />
 
-        <EditText
-            android:id="@+id/fragment_add_menu_food_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Food Deatail"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/fragment_add_menu_food_name"/>
+    <EditText
+        android:id="@+id/fragment_add_menu_food_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_add_menu_food_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="Food Detail"
+        android:inputType="text" />
 
-        <EditText
-            android:id="@+id/fragment_add_menu_food_calories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Food Calories"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/fragment_add_menu_food_detail"/>
+    <EditText
+        android:id="@+id/fragment_add_menu_food_calories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_add_menu_food_detail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="Food Calories"
+        android:inputType="text" />
 
-        <Button
-            android:id="@+id/add_food_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Add"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/fragment_add_menu_food_calories"/>
+    <Button
+        android:id="@+id/add_food_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_add_menu_food_calories"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
+        android:text="Add"
+        android:backgroundTint="@android:color/white"/>
 
 </RelativeLayout>

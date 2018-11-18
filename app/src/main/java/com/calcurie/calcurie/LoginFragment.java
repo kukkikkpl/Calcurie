@@ -117,7 +117,6 @@ public class LoginFragment extends Fragment {
                                     .getSupportFragmentManager()
                                     .beginTransaction()
                                     .replace(R.id.main_view, new HomeFragment())
-                                    .disallowAddToBackStack()
                                     .commit();
                         }
                     });

@@ -34,9 +34,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/edit_card"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginRight="20dp" />
 
         <LinearLayout
             android:id="@+id/linear_name"
@@ -144,7 +142,6 @@
             android:id="@+id/edit_profile_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="Save"
             android:layout_below="@+id/linear_age"
             android:layout_marginLeft="20dp"

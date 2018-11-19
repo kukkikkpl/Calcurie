@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,6 +35,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import android.graphics.BitmapFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -240,6 +240,7 @@ public class AddMenuFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.d("add", "Error writing document", e);
+
                 Toast.makeText(getContext(), "บันทึกล้มเหลว", Toast.LENGTH_SHORT).show();
             }
         });

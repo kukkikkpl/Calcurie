@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -42,6 +44,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -98,6 +101,9 @@ public class EditProfileFragment extends Fragment {
         age.setText(String.valueOf(user.getAge()));
         weight.setText(String.valueOf(user.getWeight()));
         height.setText(String.valueOf(user.getHeight()));
+        strURL = user.getImageUrl();
+        new EditProfileFragment.DownloadImageTask((ImageView) getView().findViewById(R.id.edit_profile_avatar)).execute(strURL);
+        Log.d("something", strURL);
     }
 
 //    public void save() {
@@ -292,5 +298,30 @@ public class EditProfileFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 }

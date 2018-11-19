@@ -11,7 +11,8 @@
         android:id="@+id/fragment_menu_scroll"
         android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="500dp"
+        android:layout_below="@+id/fragment_diary_add_food_btn">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +21,7 @@
             <ListView
                 android:id="@+id/fragment_diary_list"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="true" />
 
 
@@ -35,6 +36,6 @@
         android:layout_centerHorizontal="true"
         android:text="Add Food"
         android:backgroundTint="@android:color/white"
-        android:layout_below="@+id/fragment_menu_scroll"/>
+        android:layout_alignParentTop="true"/>
 
 </RelativeLayout>
